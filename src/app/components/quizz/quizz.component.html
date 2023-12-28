@@ -6,17 +6,15 @@
   </div>
 
   <div *ngIf=!finished class="quizz_questions">
-      <h3>{{questionSelected.question}}</h3>
+    <h3 *ngIf="started">{{questionSelected.question}}</h3>
+
+    <button class="btn-start" *ngIf="!started" (click)="startQuizz()">Começar o jogo</button>
   </div>
 
-  <div *ngIf=!finished class="quizz_options">
-
-    <button
-      *ngFor="let option of questionSelected.options; let i = index"
-      (click)="playerChoose(option.alias)"
-      class="btn-option"
-    >
-      {{option.name}}
+  <div *ngIf="!finished && started" class="quizz_options">
+    <button *ngFor="let option of questionSelected.options; let i = index" (click)="playerChoose(option.alias)"
+      class="btn-option">
+      {{ letrasOpcao[i] }} - {{option.name}}
     </button>
 
   </div>
@@ -24,5 +22,17 @@
   <div *ngIf=finished class="quizz_results">
     <h1>O Seu resultado é:</h1>
     <p>{{answerSelected}}</p>
+  </div>
+</div>
+
+<div class="modal" *ngIf="showModal">
+  <div class="circle">
+    <label for="">
+      {{ countQuizz }}
+    </label>
+  </div>
+
+  <div>
+    <h2>Se prepare, o jogo já vai começar!</h2>
   </div>
 </div>
