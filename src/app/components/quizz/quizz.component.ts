@@ -7,6 +7,12 @@ import quizz_questions from '../../../assets/data/quizz_questions.json';
   styleUrls: ['./quizz.component.css'],
 })
 export class QuizzComponent implements OnInit {
+  restart() {
+    this.answers = [];
+    this.questionIndex = 0;
+    this.questionSelected = this.questions[this.questionIndex];
+    this.finished = false;
+  }
   countQuizz: any = '3';
   letrasOpcao = ['A', 'B', 'C', 'D', 'E', 'F'];
   startQuizz() {
